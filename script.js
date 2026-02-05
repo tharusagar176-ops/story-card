@@ -84,11 +84,6 @@ function goTo(id) {
   }, 100);
 }
 
-// Story navigation function
-function goToStory(storyId) {
-  goTo(storyId);
-}
-
 // Video management - pause all videos when one starts playing
 function initializeVideoManagement() {
   // Get all video elements in the document
@@ -155,12 +150,102 @@ function generateGallery() {
     const rotation = index % 2 === 0 ? -2 : 2;
     polaroidDiv.style.transform = `rotate(${rotation}deg)`;
     
+    // Add click event to open image viewer
+    polaroidDiv.onclick = () => openImageViewer(index);
+    polaroidDiv.style.cursor = 'pointer';
+    
     polaroidDiv.innerHTML = `
       <img src="${image.src}" alt="${image.alt}" loading="lazy" onerror="this.style.display='none'">
     `;
     
     galleryGrid.appendChild(polaroidDiv);
   });
+}
+
+// Image Viewer Variables
+let currentImageIndex = 0;
+const imageViewerModal = document.getElementById('imageViewerModal');
+const viewerImage = document.getElementById('viewerImage');
+const currentImageIndexSpan = document.getElementById('currentImageIndex');
+const totalImagesSpan = document.getElementById('totalImages');
+
+// Open Image Viewer
+function openImageViewer(index) {
+  currentImageIndex = index;
+  updateViewerImage();
+  imageViewerModal.classList.add('active');
+  document.body.style.overflow = 'hidden'; // Prevent background scrolling
+}
+
+// Close Image Viewer
+function closeImageViewer() {
+  imageViewerModal.classList.remove('active');
+  document.body.style.overflow = ''; // Restore scrolling
+}
+
+// Update Viewer Image
+function updateViewerImage() {
+  if (galleryImages[currentImageIndex]) {
+    viewerImage.src = galleryImages[currentImageIndex].src;
+    viewerImage.alt = galleryImages[currentImageIndex].alt;
+    currentImageIndexSpan.textContent = currentImageIndex + 1;
+    totalImagesSpan.textContent = galleryImages.length;
+  }
+}
+
+// Navigate to Previous Image
+function previousImage() {
+  currentImageIndex = currentImageIndex > 0 ? currentImageIndex - 1 : galleryImages.length - 1;
+  updateViewerImage();
+}
+
+// Navigate to Next Image
+function nextImage() {
+  currentImageIndex = currentImageIndex < galleryImages.length - 1 ? currentImageIndex + 1 : 0;
+  updateViewerImage();
+}
+
+// Keyboard Navigation
+document.addEventListener('keydown', function(e) {
+  if (imageViewerModal.classList.contains('active')) {
+    switch(e.key) {
+      case 'Escape':
+        closeImageViewer();
+        break;
+      case 'ArrowLeft':
+        previousImage();
+        break;
+      case 'ArrowRight':
+        nextImage();
+        break;
+    }
+  }
+});
+
+// Touch/Swipe Support for Mobile
+let touchStartX = 0;
+let touchEndX = 0;
+
+imageViewerModal.addEventListener('touchstart', function(e) {
+  touchStartX = e.changedTouches[0].screenX;
+});
+
+imageViewerModal.addEventListener('touchend', function(e) {
+  touchEndX = e.changedTouches[0].screenX;
+  handleSwipe();
+});
+
+function handleSwipe() {
+  const swipeThreshold = 50;
+  const swipeDistance = touchEndX - touchStartX;
+  
+  if (Math.abs(swipeDistance) > swipeThreshold) {
+    if (swipeDistance > 0) {
+      previousImage(); // Swipe right = previous image
+    } else {
+      nextImage(); // Swipe left = next image
+    }
+  }
 }
 
 // Music controls
