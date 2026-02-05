@@ -88,6 +88,23 @@ Thank you for being mine, today and always. 💞🌹</p>
   </div>
 </section>
 
+  
+<!-- 🔍 IMAGE VIEWER MODAL -->
+<div class="image-viewer-modal" id="imageViewerModal">
+  <div class="image-viewer-overlay" onclick="closeImageViewer()"></div>
+  <div class="image-viewer-container">
+    <button class="viewer-close-btn" onclick="closeImageViewer()">×</button>
+    <button class="viewer-nav-btn viewer-prev-btn" onclick="previousImage()">‹</button>
+    <button class="viewer-nav-btn viewer-next-btn" onclick="nextImage()">›</button>
+    <div class="image-viewer-content">
+      <img id="viewerImage" src="" alt="" class="viewer-image">
+      <div class="image-counter">
+        <span id="currentImageIndex">1</span> / <span id="totalImages">9</span>
+      </div>
+    </div>
+  </div>
+</div>
+  
 <!-- 💌 LETTER -->
 <section class="section" id="letter">
   <div class="letter-container">
