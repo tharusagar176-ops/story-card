@@ -124,15 +124,15 @@ function pauseAllVideos() {
 
 // Gallery images data - all download images with Valentine's labels
 const galleryImages = [
-  { src: 'assets/images/download1.jpeg', label: 'Sweet Valentine', alt: 'Sweet Valentine' },
-  { src: 'assets/images/download2.jpeg', label: 'Love Smile', alt: 'Love Smile' },
-  { src: 'assets/images/download3.jpeg', label: 'Perfect Valentine', alt: 'Perfect Valentine' },
-  { src: 'assets/images/download4.jpeg', label: 'Romantic Times', alt: 'Romantic Times' },
-  { src: 'assets/images/download5.jpeg', label: 'Valentine Magic', alt: 'Valentine Magic' },
-  { src: 'assets/images/download6.jpeg', label: 'Love Story', alt: 'Love Story' },
-  { src: 'assets/images/download7.jpeg', label: 'Valentine Joy', alt: 'Valentine Joy' },
-  { src: 'assets/images/download8.jpeg', label: 'Cupid Moments', alt: 'Cupid Moments' },
-  { src: 'assets/images/download9.jpeg', label: 'Forever Love', alt: 'Forever Love' },
+  { src: 'assets/images/download1.jpeg'},
+  { src: 'assets/images/download2.jpeg' },
+  { src: 'assets/images/download3.jpeg' },
+  { src: 'assets/images/download4.jpeg' },
+  { src: 'assets/images/download5.jpeg' },
+  { src: 'assets/images/download6.jpeg'},
+  { src: 'assets/images/download7.jpeg' },
+  { src: 'assets/images/download8.jpeg' },
+  { src: 'assets/images/download9.jpeg'},
   // { src: 'assets/images/download10.jpeg', label: 'Heart & Soul', alt: 'Heart & Soul' },
   // { src: 'assets/images/download11.jpeg', label: 'Valentine Kiss', alt: 'Valentine Kiss' },
   // { src: 'assets/images/download12.jpeg', label: 'Eternal Valentine', alt: 'Eternal Valentine' }
